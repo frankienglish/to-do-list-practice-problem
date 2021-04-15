@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ToDoItem from "./ToDoListItem";
 
 function App() {
   // create a useState for the input and a method to update it
@@ -34,7 +35,7 @@ function App() {
       <div>
         <ul>
           {items.map((todoItem) => (
-            <li>{todoItem}</li>
+            <ToDoItem text={todoItem} />
           ))}
         </ul>
       </div>
