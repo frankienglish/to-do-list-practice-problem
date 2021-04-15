@@ -1,22 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ToDoItem(props) {
-  const [isDone, setIsDone] = useState(false);
-
-  // whatever the state is, when clicked set it to the opposite
-  function handleClick() {
-    setIsDone((prevValue) => {
-      return !prevValue;
-    });
-  }
-
-  // keep the conditional inside of the style for handling these
+  // make sure to call onChecked like that so that it doesnt execute on render
   return (
-    <div onClick={handleClick}>
-      <li style={{ textDecoration: isDone ? "line-through" : "none" }}>
-        {props.text}
-      </li>
-      ;
+    <div
+      onClick={() => {
+        props.onChecked(props.id);
+      }}
+    >
+      <li>{props.text}</li>;
     </div>
   );
 }

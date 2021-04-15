@@ -21,6 +21,16 @@ function App() {
     setInputText("");
   }
 
+  // filter through the list and render it as long as the id isnt the one we are deleting
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
+  // for keys use a package like uuid to generate keys, not the index
   return (
     <div className="container">
       <div className="heading">
@@ -34,8 +44,13 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((todoItem) => (
-            <ToDoItem text={todoItem} />
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
           ))}
         </ul>
       </div>
